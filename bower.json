@@ -1,5 +1,5 @@
 {
-  "name": "viewerText",
+  "name": "Text Reader",
   "id": "viewerText",
   "description": "A TagSpaces extension allowing .",
   "type": "viewer",
