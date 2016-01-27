@@ -1,30 +1,21 @@
-/* Copyright (c) 2012-2013 The TagSpaces Authors. All rights reserved.
- * Use of this source code is governed by a AGPL3 license that
- * can be found in the LICENSE file. */
+/* Copyright (c) 2013-2016 The TagSpaces Authors.
+ * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 
 define(function(require, exports, module) {
   "use strict";
 
   console.log("Loading viewerText");
 
-  var extensionTitle = "Universal Viewer";
-  var extensionID = "viewerText"; // ID should be equal to the directory name where the ext. is located   
-  var extensionType = "viewer";
-  var extensionIcon = "icon-list";
-  var extensionVersion = "1.0";
-  var extensionManifestVersion = 1;
-  var extensionLicense = "AGPL";
+  var extensionID = "viewerText"; // ID should be equal to the directory name where the ext. is located
   var extensionSupportedFileTypes = ["*"];
 
   var TSCORE = require("tscore");
-
   var containerElID;
   var $containerElement;
   var filePath;
-
   var extensionDirectory = TSCORE.Config.getExtensionPath() + "/" + extensionID;
 
-  exports.init = function(fPath, containerElementID) {
+  function init(fPath, containerElementID) {
     console.log("Initalization Text Viewer...");
     containerElID = containerElementID;
     $containerElement = $('#' + containerElID);
@@ -39,15 +30,17 @@ define(function(require, exports, module) {
     });
   };
 
-  exports.setFileType = function(fileType) {
+  function setFileType(fileType) {
+
     console.log("setFileType not supported on this extension");
   };
 
-  exports.viewerMode = function(isViewerMode) {
-    // set readonly      
+  function viewerMode(isViewerMode) {
+    // set readonly
+
   };
 
-  exports.setContent = function(content) {
+  function setContent(content) {
     // Cutting preview content 8kb
     var previewSize = 1024 * 10;
     console.log("Content size: " + content.length);
@@ -85,18 +78,15 @@ define(function(require, exports, module) {
 
   };
 
-  exports.getContent = function() {
+  function getContent() {
+
     console.log("Not implemented");
   };
 
-  // Extension Vars
-  exports.Title = extensionTitle;
-  exports.ID = extensionID;
-  exports.Type = extensionType;
-  exports.Icon = extensionIcon;
-  exports.Version = extensionVersion;
-  exports.ManifestVersion = extensionManifestVersion;
-  exports.License = extensionLicense;
-  exports.SupportedFileTypes = extensionSupportedFileTypes;
+  exports.init = init;
+  exports.getContent = getContent;
+  exports.setContent = setContent;
+  exports.viewerMode = viewerMode;
+  exports.setFileType = setFileType;
 
 });
