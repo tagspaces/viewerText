@@ -4,10 +4,10 @@
 define(function(require, exports, module) {
   "use strict";
 
-  console.log("Loading viewerText");
-
   var extensionID = "viewerText"; // ID should be equal to the directory name where the ext. is located
   var extensionSupportedFileTypes = ["*"];
+
+  console.log("Loading " + extensionID);
 
   var TSCORE = require("tscore");
   var containerElID;
@@ -28,17 +28,17 @@ define(function(require, exports, module) {
       TSCORE.showAlertDialog("Loading " + filePath + " failed.");
       console.error("Loading file " + filePath + " failed " + error);
     });
-  };
+  }
 
   function setFileType(fileType) {
 
     console.log("setFileType not supported on this extension");
-  };
+  }
 
   function viewerMode(isViewerMode) {
     // set readonly
 
-  };
+  }
 
   function setContent(content) {
     // Cutting preview content 8kb
@@ -76,12 +76,12 @@ define(function(require, exports, module) {
       }));
     }
 
-  };
+  }
 
   function getContent() {
 
     console.log("Not implemented");
-  };
+  }
 
   exports.init = init;
   exports.getContent = getContent;
