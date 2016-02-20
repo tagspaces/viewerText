@@ -1,7 +1,7 @@
 {
   "name": "Text Reader",
   "id": "viewerText",
-  "description": "A TagSpaces extension allowing .",
+  "description": "A TagSpaces extension allowing you to open plain text files.",
   "type": "viewer",
   "version": "1.0.0",
   "dependencies": {
