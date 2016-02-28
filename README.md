@@ -23,7 +23,7 @@ If you want to extend this extensions, please follow our general [extension deve
 
 ## Screenshots
 
-![Screenshot of the viewerText](http://tagspaces.org/extensions/editorHTML/viewerText-screenshot.png)
+![Screenshot of the viewerText](http://tagspaces.org/extensions/viewerText/viewerText-screenshot.png)
 
 ## License
 
