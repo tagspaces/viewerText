@@ -4,7 +4,7 @@ A TagSpaces extension allowing you to open plain text files
 
 ## Features
 
-* Opens file as plain text
+* Displaying the content of files as plain text
 
 
 ![Screenshot of the viewerText](http://docs.tagspaces.org/media/extensions/viewer-text-lead.png)
