@@ -66,7 +66,7 @@ define(function(require, exports, module) {
         .append(cleanedContent)
       ));
 
-    if (isNode) {
+    if (isElectron) {
       $containerElement.find("#mainLayout").prepend($('<button/>', {
         class: 'btn btn-primary',
         style: 'margin: 5px;',
