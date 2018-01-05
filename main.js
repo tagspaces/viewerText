@@ -4,12 +4,12 @@
 'use strict';
 
 var $textContent;
-var loadContentExternally = true;
 var isWeb = (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/'));
 
 $(document).ready(init);
 
 function init() {
+  sendMessageToHost({command: 'loadDefaultTextContent'});
 
   function getParameterByName(name) {
     name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
@@ -146,8 +146,7 @@ function setContent(content, fileDirectory) {
       style: 'margin: 5px;',
       text: 'Open Natively'
     }).on("click", function() {
-      var msg = {command: 'openFileNatively', link: filePath};
-      window.parent.postMessage(JSON.stringify(msg), '*');
+      sendMessageToHost({command: 'openFileNatively', link: filePath});
     }));
   }
 }
