@@ -6,7 +6,6 @@
 sendMessageToHost({command: 'loadDefaultTextContent'});
 
 var $textContent;
-var isWeb = (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/'));
 
 function loadLocales(url, options, callback, data) {
   try {
