@@ -8,6 +8,17 @@ sendMessageToHost({command: 'loadDefaultTextContent'});
 var $textContent;
 var isWeb = (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/'));
 
+function loadLocales(url, options, callback, data) {
+  try {
+    const waitForLocale = require('bundle-loader!../locales/' + url + '/ns.viewerZIP.json');
+    waitForLocale((locale) => {
+      callback(locale, { status: '200' });
+    });
+  } catch (e) {
+    callback(null, { status: '404' });
+  }
+}
+
 $(document).ready(init);
 function init() {
   function getParameterByName(name) {
@@ -18,6 +29,7 @@ function init() {
   }
 
   var locale = getParameterByName('locale');
+  initI18N(locale, 'ns.viewerText.json');
 
   var extSettings;
   loadExtSettings();
@@ -84,12 +96,23 @@ function init() {
   });
 
   // Init internationalization
-  i18next.init({
-    ns: {namespaces: ['ns.viewerText']},
+  const options = {
+    fallbackLng: 'en_US',
+    ns: ['ns.viewerText'],
+    lng: 'en_US', // locale,
+    attributes: ['t', 'i18n'],
+    backend: {
+      loadPath: 'locales/{{lng}}/ns.viewer.json',
+      parse: (data) => data, // comment to have working i18n switch
+      ajax: loadLocales // comment to have working i18n switch
+    },
+    // getAsync: true,
     debug: true,
-    lng: locale,
-    fallbackLng: 'en_US'
-  }, function() {
+  };
+  // Init internationalization
+  i18next
+  .use(i18nextXHRBackend).use(i18nextBrowserLanguageDetector)
+  .init(options , function() {
     jqueryI18next.init(i18next, $);
     $('[data-i18n]').localize();
   });
