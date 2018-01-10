@@ -94,28 +94,6 @@ function init() {
     saveExtSettings();
   });
 
-  // Init internationalization
-  const options = {
-    fallbackLng: 'en_US',
-    ns: ['ns.viewerText'],
-    lng: 'en_US', // locale,
-    attributes: ['t', 'i18n'],
-    backend: {
-      loadPath: 'locales/{{lng}}/ns.viewer.json',
-      parse: (data) => data, // comment to have working i18n switch
-      ajax: loadLocales // comment to have working i18n switch
-    },
-    // getAsync: true,
-    debug: true,
-  };
-  // Init internationalization
-  i18next
-  .use(i18nextXHRBackend).use(i18nextBrowserLanguageDetector)
-  .init(options , function() {
-    jqueryI18next.init(i18next, $);
-    $('[data-i18n]').localize();
-  });
-
   function saveExtSettings() {
     var settings = {
       'styleIndex': currentStyleIndex,
