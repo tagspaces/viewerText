@@ -20,13 +20,6 @@ function loadLocales(url, options, callback, data) {
 
 $(document).ready(init);
 function init() {
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
-      results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  }
-
   var locale = getParameterByName('locale');
   initI18N(locale, 'ns.viewerText.json');
 
