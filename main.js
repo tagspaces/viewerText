@@ -64,7 +64,7 @@ function setContent(content, fileDir) {
       style: 'margin: 10px; margin-left: auto; margin-right: auto; max-width: 200px;',
       text: 'Open File Natively'
     }).on('click', () => {
-      sendMessageToHost({ command: 'openLinkExternally', link: filePath });
+      sendMessageToHost({ command: 'openFileNatively', link: filePath });
     })
   );
   // }
