@@ -3,7 +3,7 @@
 /* globals sendMessageToHost, getParameterByName, initI18N, $, isElectron */
 'use strict';
 
-sendMessageToHost({ command: 'loadDefaultTextContent' });
+sendMessageToHost({ command: 'loadDefaultTextContent', preview: true });
 
 const locale = getParameterByName('locale');
 const filePath = getParameterByName('file');
