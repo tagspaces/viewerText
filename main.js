@@ -33,7 +33,9 @@ function setContent(content, fileDir) {
   // console.log('Content size: ' + content.length);
 
   // removing the script tags from the content
-  let cleanedContent = content.toString().replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+  let cleanedContent = content
+    .toString()
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
   if (content.length > previewSize) {
     cleanedContent = content.substring(0, previewSize);
   }
@@ -61,10 +63,17 @@ function setContent(content, fileDir) {
   $textContent.find('#mainLayout').prepend(
     $('<button/>', {
       class: 'btn btn-primary',
-      style: 'margin: 10px; margin-left: auto; margin-right: auto; max-width: 200px;',
+      style:
+        'margin: 10px; margin-left: auto; margin-right: auto; max-width: 200px;',
       text: 'Open File Natively'
     }).on('click', () => {
-      sendMessageToHost({ command: 'openFileNatively', link: filePath });
+      if (
+        confirm(
+          'Do you really want to open this file? Some files like .exe can be potentially dangerous.'
+        )
+      ) {
+        sendMessageToHost({ command: 'openFileNatively', link: filePath });
+      }
     })
   );
   // }
