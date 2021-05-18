@@ -8,27 +8,12 @@ sendMessageToHost({ command: 'loadDefaultTextContent', preview: true });
 const locale = getParameterByName('locale');
 const filePath = getParameterByName('file');
 
-let $textContent;
-
 $(document).ready(() => {
   initI18N(locale, 'ns.viewerText.json');
-  $textContent = $('#textContent');
 });
 
 function setContent(content, fileDir) {
-  $textContent = $('#textContent');
-  $textContent.empty().append(content);
-
-  let fileDirectory = fileDir;
-  if (fileDirectory.indexOf('file://') === 0) {
-    fileDirectory = fileDirectory.substring(
-      'file://'.length,
-      fileDirectory.length
-    );
-  }
-
-  // console.log(content);
-  // Cutting preview content 8kb
+  // Cutting preview content 10kb
   const previewSize = 1024 * 10;
   // console.log('Content size: ' + content.length);
 
@@ -36,45 +21,20 @@ function setContent(content, fileDir) {
   let cleanedContent = content
     .toString()
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-  if (content.length > previewSize) {
-    cleanedContent = content.substring(0, previewSize);
+  if (cleanedContent.length > previewSize) {
+    cleanedContent = cleanedContent.substring(0, previewSize);
   }
 
-  // if (isElectron) {
-  $textContent.empty().append(
-    $('<div>', {
-      style: 'background-color: darkgray; width: 100%; height: 100%;',
-      class: 'flexLayoutVertical',
-      id: 'mainLayout'
-    })
-      .append(
-        '<span style="margin-left: auto; margin-right: auto; font-size: 14px; color: white;">Preview of the document: </span>'
+  $('#textContentArea')
+    .empty()
+    .text(cleanedContent);
+  $('#openFileNativeyButton').on('click', () => {
+    if (
+      confirm(
+        'Do you really want to open this file? Some files like .exe can be potentially dangerous.'
       )
-      .append(
-        $('<textarea>', {
-          readonly: 'true',
-          style:
-            'overflow: auto; height: 100%; width: 100%; font-size: 13px; margin: 0px; background-color: white; border-width: 0px;',
-          class: 'flexMaxHeight'
-        }).append(cleanedContent)
-      )
-  );
-
-  $textContent.find('#mainLayout').prepend(
-    $('<button/>', {
-      class: 'btn btn-primary',
-      style:
-        'margin: 10px; margin-left: auto; margin-right: auto; max-width: 200px;',
-      text: 'Open File Natively'
-    }).on('click', () => {
-      if (
-        confirm(
-          'Do you really want to open this file? Some files like .exe can be potentially dangerous.'
-        )
-      ) {
-        sendMessageToHost({ command: 'openFileNatively', link: filePath });
-      }
-    })
-  );
-  // }
+    ) {
+      sendMessageToHost({ command: 'openFileNatively', link: filePath });
+    }
+  });
 }
