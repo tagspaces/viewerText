@@ -28,13 +28,4 @@ function setContent(content, fileDir) {
   $('#textContentArea')
     .empty()
     .text(cleanedContent);
-  $('#openFileNativeyButton').on('click', () => {
-    if (
-      confirm(
-        'Do you really want to open this file? Some files like .exe can be potentially dangerous.'
-      )
-    ) {
-      sendMessageToHost({ command: 'openFileNatively', link: filePath });
-    }
-  });
 }

@@ -10,29 +10,29 @@ body {
 }
 
 .zoomSmallest {
-    zoom:70%;
+  zoom: 70%;
 }
 
 .zoomSmaller {
-    zoom:80%;
+  zoom: 80%;
 }
 
 .zoomSmall {
-    zoom:90%;
+  zoom: 90%;
 }
 
 .zoomDefault {
-    zoom:100%;
+  zoom: 100%;
 }
 
 .zoomLarge {
-    zoom:110%;
+  zoom: 110%;
 }
 
 .zoomLarger {
-    zoom:120%;
+  zoom: 120%;
 }
 
 .zoomLargest {
-    zoom:130%;
+  zoom: 130%;
 }
