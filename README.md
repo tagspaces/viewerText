@@ -1,3 +1,5 @@
+This repository is archived. Please use https://github.com/tagspaces/tagspaces-extensions instead.
+
 # Text Viewer for TagSpaces
 
 A TagSpaces extension allowing you to open plain text files
